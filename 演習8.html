@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自己紹介ページ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <h1>私の自己紹介</h1>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- 名前 -->
+        <h2>名前</h2>
+        <p></p>
+
+        <!-- 得意なこと -->
+        <h2>得意なこと</h2>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <!-- 座右の銘 -->
+        <h2>座右の銘</h2>
+        <p></p>
+
+        <!-- スキルや趣味をテーブル形式で紹介 -->
+        <h2>スキルと趣味</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>カテゴリー</th>
+                    <th>詳細</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>プログラミング</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>趣味</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>学びたいこと</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 誕生日カウントダウン機能 -->
+        <h2>誕生日カウントダウン</h2>
+        <div>
+            <label for="birthday">誕生日を選択してください:</label>
+            <input type="date" id="birthday">
+            <button onclick="calculateCountdown()">カウントダウン開始</button>
+        </div>
+        <div id="countdownDisplay" class="countdown"></div>
+
+        <!-- フォーム -->
+        <h2>フィードバックをお願いします！</h2>
+        <form action="https://example.com/submit" method="post">
+            <label for="name">名前:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="message">メッセージ:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+            <input type="submit" value="送信">
+        </form>
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <p>© 自己紹介ページ</p>
+    </footer>
+
+    <script>
+    // 誕生日までの日数を計算する関数
+    function calculateCountdown() {
+        const birthdayInput = document.getElementById('birthday').value;
+        const birthday = new Date(birthdayInput);
+        const today = new Date();
+        birthday.setFullYear(today.getFullYear());
+
+        if (birthday < today) {
+            birthday.setFullYear(today.getFullYear() + 1);
+        }
+
+        const diff = birthday - today;
+        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+        document.getElementById('countdownDisplay').innerText = `誕生日まであと ${days} 日です！`;
+    }
+
+    // 時間帯によって背景色を変更する
+    function updateBackgroundColor() {
+        const hour = new Date().getHours();
+        let color;
+
+        if (hour >= 6 && hour < 12) {
+            color = '#FFFAE6'; // 朝
+        } else if (hour >= 12 && hour < 18) {
+            color = '#FFF5E6'; // 昼
+        } else {
+            color = '#E6F0FF'; // 夜
+        }
+
+        document.body.style.backgroundColor = color;
+    }
+
+    // ページ読み込み時に背景色を更新
+    updateBackgroundColor();
+    </script>
+</body>
+</html>
